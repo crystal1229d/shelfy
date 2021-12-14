@@ -7,6 +7,8 @@ const { RangePicker } = DatePicker;
 
 function UploadBookPage(props) {
 
+    console.log('props', props);
+
     const [ISBN, setISBN] = useState('')
     const [Title, setTitle] = useState('')
     const [Author, setAuthor] = useState([])

@@ -13,7 +13,7 @@ import UploadBookPage from './views/UploadBookPage/UploadBookPage';
 //true   only logged in user can go inside
 //false  logged in user can't go inside
 
-function App() {
+function App({ kakaoSearch }) {
   return (
     <Suspense fallback={(<div>Loading...</div>)}>
       <NavBar />
@@ -22,7 +22,9 @@ function App() {
           <Route exact path="/" component={Auth(LandingPage, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
-          <Route exact path="/book/upload" component={Auth(UploadBookPage, true)} />
+          {/* <Route exact path="/book/upload" component={Auth(UploadBookPage, true)} /> */}
+          <Route exact path="/book/upload" render={() => Auth(UploadBookPage, true)} />
+
         </Switch>
       </div>
       <Footer />
