@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
+import Axios from 'axios';
 import { Typography, Button, Form, Input, InputNumber, Rate, Select, DatePicker } from 'antd';
 
 const { Title: TitleTag } = Typography;
+const { TextArea } = Input;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
 function UploadBookPage(props) {
-
-    console.log('props', props);
 
     const [ISBN, setISBN] = useState('')
     const [Title, setTitle] = useState('')
@@ -15,18 +15,16 @@ function UploadBookPage(props) {
     const [Publisher, setPublisher] = useState('')
     const [PublicationDate, setPublicationDate] = useState('')
     const [Price, setPrice] = useState(0)
+    const [Plot, setPlot] = useState('')
     const [Genre, setGenre] = useState([])
     const [MyShelf, setMyShelf] = useState('default')
-    const [Rating, setRating] = useState(5)
+    const [Rating, setRating] = useState(5.0)
     const [ReadingPeriod, setReadingPeriod] = useState([])
+    const [Cover, setCover] = useState('')
 
     const formItemLayout = {
         labelCol: { span: 6 },
         wrapperCol: { span: 11 },
-    }
-
-    const validateMessages = {
-        required: '${name} is required!', 
     }
 
     const isbnChangeHandler = event => {
@@ -57,6 +55,10 @@ function UploadBookPage(props) {
         setGenre(event.currentTarget.value)
     }
 
+    const plotChangeHandler = event => {
+        setPlot(event.currentTarget.value)
+    }
+
     const myShelfChangeHandler = event => {
         setMyShelf(event.currentTarget.value)
     }
@@ -69,12 +71,51 @@ function UploadBookPage(props) {
         setReadingPeriod(event.currentTarget.value)
     }
 
+    const coverChangeHandler = event => {
+        setCover(event.currentTarget.value)
+    }
+
     const GetBookInfoWithISBN = () => {
         console.log('GetBookInfoWithISBN')
     }
 
     const SubmitHandler = event => {
         console.log('SubmitHandler')
+
+        // automatic page refresh 방지
+        event.preventDefault()
+
+        // 유효성 체크 
+        if ( !ISBN || !Title || !Author || !Genre || !MyShelf) {
+            return alert("필수 값들을 넣어주셔야 합니다")
+        }
+
+        const body = {
+            writer: props.user.userData._id,
+            isbn: ISBN, 
+            title: Title,
+            author: Author,
+            publisher: Publisher,
+            publicationDate: PublicationDate,
+            price: Price,
+            genre: Genre,
+            plot: Plot,
+            myShelf: MyShelf,
+            rating: Rating,
+            readingPeriod: ReadingPeriod,
+            cover: Cover 
+        }
+
+        Axios.post("/api/book", body)
+            .then(response => {
+                if (response.data.success) {
+                    alert('책 정보 업로드에 성공했습니다')
+                    props.history.push('/')
+                } else {
+                    alert("책 정보 업로드에 실패했습니다")
+                }
+            })
+
     }
 
     return (
@@ -87,11 +128,7 @@ function UploadBookPage(props) {
             <div>
                 <Form
                     {...formItemLayout} 
-                    onFinish={SubmitHandler} 
-                    validateMessages={validateMessages} 
-                    initialValues={{
-                        rate: 5.0
-                    }}
+                    onSubmit={SubmitHandler} 
                 >
 
                     <Form.Item label="도서코드(ISBN)" style={{ margin: '0px' }}>
@@ -157,6 +194,10 @@ function UploadBookPage(props) {
                             <Option value="non-fiction">Non-Fiction</Option>
                             <Option value="sf">SF</Option>
                         </Select>
+                    </Form.Item>
+
+                    <Form.Item name="plot" label="줄거리" onChange={plotChangeHandler}>
+                        <TextArea />
                     </Form.Item>
 
                     <Form.Item label="책장" onChange={myShelfChangeHandler}>
