@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Axios from 'axios';
 import { Typography, Button, Form, Input, Rate, Select, DatePicker } from 'antd';
+import SelectGenre from './Sections/SelectGenre';
 
 const { Title: TitleTag } = Typography;
 const { TextArea } = Input;
@@ -105,7 +106,6 @@ function UploadBookPage(props) {
         console.log('MyShelf', MyShelf);
         console.log('Rating', Rating);
 
-
         // 유효성 체크 
         if ( !ISBN || !Title || !Author || !Genre || !MyShelf) {
             return alert("필수 값들을 넣어주셔야 합니다")
@@ -117,7 +117,7 @@ function UploadBookPage(props) {
             title: Title,
             author: Author,
             publisher: Publisher,
-            // publicationDate: PublicationDate,
+            publicationDate: PublicationDate,
             price: Price,
             genre: Genre,
             plot: Plot,
@@ -147,10 +147,7 @@ function UploadBookPage(props) {
             </div>
             
             <div>
-                <Form
-                    {...formItemLayout} 
-                    onSubmit={SubmitHandler} 
-                >
+                <Form {...formItemLayout} onSubmit={SubmitHandler}>
 
                     <Form.Item label="도서코드(ISBN)" style={{ margin: '0px' }}>
                         <Form.Item 
@@ -193,15 +190,8 @@ function UploadBookPage(props) {
                         <DatePicker value={PublicationDate} onChange={publicationDateChangeHandler}/>
                     </Form.Item> */}
 
-                    <Form.Item
-                        name="genre"
-                        label="장르"
-                        rules={[ {
-                            required: true,
-                            message: 'Please select genre of the book!',
-                            type: 'array',
-                        }, ]}
-                    >
+                    {/* <SelectGenre list={GenreData} /> */}
+                    <Form.Item name="genre" label="장르">
                         <Select value={Genre} onChange={genreChangeHandler} mode="multiple" placeholder="Please select genre">
                             <Option value="fiction">Fiction</Option>
                             <Option value="non-fiction">Non-Fiction</Option>
@@ -231,12 +221,7 @@ function UploadBookPage(props) {
                         <RangePicker value={ReadingPeriod} onChange={readingPeriodChangeHandler}/>
                     </Form.Item> */}
 
-                    <Form.Item 
-                        wrapperCol={{
-                            span: 12,
-                            offset: 12,
-                        }}
-                    >
+                    <Form.Item wrapperCol={{ span: 12, offset: 12, }}>
                         <Button type="primary" htmlType="submit" style={{ padding: '5px 30px' }}>
                             업로드
                         </Button>

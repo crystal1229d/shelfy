@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require("../models/Book");
+const { Book } = require("../models/Book");
 
 //=================================
 //             Book
@@ -22,7 +22,6 @@ const { User } = require("../models/Book");
 router.post("/", (req, res) => {
 
     // INSERT
-
     const book = new Book(req.body);
 
     book.save((err) => {
