@@ -25,11 +25,9 @@ router.post("/", (req, res) => {
 
     const book = new Book(req.body);
 
-    user.save((err, doc) => {
-        if (err) return res.json({ success: false, err });
-        return res.status(200).json({
-            success: true
-        });
+    book.save((err) => {
+        if (err) return res.status(400).json({ success: false, err })
+        return res.status(200).json( { success: true })
     });
 });
 
