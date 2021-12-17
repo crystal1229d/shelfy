@@ -1,25 +1,24 @@
 import React, { useState } from 'react'
+import { Form, Select } from 'antd';
+
+const { Option } = Select;
 
 function SelectGenre(props) {
 
     // const [Genre, setGenre] = useState([])
 
-    const renderGenreOptionLists = () => {
-        props.list && props.list.map((value, index) => {
-            // <Option value={}>Fiction</Option>
-            console.log(value, index);
-        })
-    }
+    const renderGenreOptionLists = () => (
+        props.list && props.list.map((item, index) => (
+            <Option key={index} value={item.value} style={{ textTransform: 'uppercase' }}>{item.value}</Option>
+        ))
+    )
 
     return ( 
-        // <Form.Item name="genre" label="장르">
-        //     <Select value={Genre} onChange={genreChangeHandler} mode="multiple" placeholder="Please select genre">
-        //         <Option value="fiction">Fiction</Option>
-        //         <Option value="non-fiction">Non-Fiction</Option>
-        //         <Option value="sf">SF</Option>
-        //     </Select>
-        // </Form.Item>
-        <div></div>
+        <Form.Item name="genre" label="장르">
+            <Select value={props.value} onChange={props.selectHandler} mode="multiple" placeholder="Please select genre">
+                {renderGenreOptionLists()}
+            </Select>
+        </Form.Item>
     )
 }
 

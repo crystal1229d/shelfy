@@ -13,6 +13,9 @@ const GenreData = [
     { key: 2, value: 'non-fiction'},
     { key: 3, value: 'SF'},
     { key: 4, value: 'romance'},
+    { key: 5, value: 'biography'},
+    { key: 6, value: 'autobiography'},
+    { key: 7, value: 'poetry'},
 ]
 
 function UploadBookPage(props) {
@@ -94,17 +97,6 @@ function UploadBookPage(props) {
 
         // automatic page refresh 방지
         event.preventDefault()
-
-        console.log('ISBN', ISBN);
-        console.log('Title', Title);
-        console.log('Author', Author);
-        console.log('Publisher', Publisher);
-        console.log('PublicationDate', PublicationDate);
-        console.log('Price', Price);
-        console.log('Genre', Genre);
-        console.log('Plot', Plot);
-        console.log('MyShelf', MyShelf);
-        console.log('Rating', Rating);
 
         // 유효성 체크 
         if ( !ISBN || !Title || !Author || !Genre || !MyShelf) {
@@ -190,7 +182,8 @@ function UploadBookPage(props) {
                         <DatePicker value={PublicationDate} onChange={publicationDateChangeHandler}/>
                     </Form.Item> */}
 
-                    {/* <SelectGenre list={GenreData} /> */}
+                    <SelectGenre list={GenreData} value={Genre} selectHandler={genreChangeHandler} />
+
                     <Form.Item name="genre" label="장르">
                         <Select value={Genre} onChange={genreChangeHandler} mode="multiple" placeholder="Please select genre">
                             <Option value="fiction">Fiction</Option>
