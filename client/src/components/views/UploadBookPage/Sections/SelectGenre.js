@@ -5,11 +5,11 @@ const { Option } = Select;
 
 function SelectGenre(props) {
 
-    // const [Genre, setGenre] = useState([])
+    // const [SelectedOptions, setSelectedOptions] = useState([])
 
     const renderGenreOptionLists = () => (
-        props.list && props.list.map((item, index) => (
-            <Option key={index} value={item.value} style={{ textTransform: 'uppercase' }}>{item.value}</Option>
+        props.list && props.list.map((item) => (
+            <Option key={item.key} value={item.value} style={{ textTransform: 'uppercase' }}>{item.value}</Option>
         ))
     )
 

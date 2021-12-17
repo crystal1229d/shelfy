@@ -63,9 +63,7 @@ function UploadBookPage(props) {
     }
 
     const genreChangeHandler = event => {
-        console.log(Genre)
-        setGenre([...Genre, event[0]])
-        console.log(Genre)
+        setGenre([...event])
     }
 
     const plotChangeHandler = event => {
@@ -153,7 +151,7 @@ function UploadBookPage(props) {
 
                         <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}>
                             <Button type="button" onClick={GetBookInfoWithISBN}>
-                                ISBN으로 도서정보 가져오기
+                                도서정보 가져오기
                             </Button>
                         </Form.Item>
                     </Form.Item>
@@ -166,12 +164,12 @@ function UploadBookPage(props) {
                         <Input value={Author} onChange={authorChangeHandler}/>
                     </Form.Item>
 
-                    <Form.Item name="price" label="가격">
-                        <Input type="number" value={Price} onChange={priceChangeHandler}/>
-                    </Form.Item>
-
                     <Form.Item name="publisher" label="출판사">
                         <Input value={Publisher} onChange={publisherChangeHandler}/>
+                    </Form.Item>
+
+                    <Form.Item name="price" label="가격">
+                        <Input type="number" value={Price} onChange={priceChangeHandler}/>
                     </Form.Item>
 
                     {/* <Form.Item 
@@ -183,14 +181,6 @@ function UploadBookPage(props) {
                     </Form.Item> */}
 
                     <SelectGenre list={GenreData} value={Genre} selectHandler={genreChangeHandler} />
-
-                    <Form.Item name="genre" label="장르">
-                        <Select value={Genre} onChange={genreChangeHandler} mode="multiple" placeholder="Please select genre">
-                            <Option value="fiction">Fiction</Option>
-                            <Option value="non-fiction">Non-Fiction</Option>
-                            <Option value="sf">SF</Option>
-                        </Select>
-                    </Form.Item>
 
                     <Form.Item name="plot" label="줄거리">
                         <TextArea value={Plot} onChange={plotChangeHandler}/>
