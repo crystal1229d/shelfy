@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Axios from 'axios';
 import { Typography, Button, Form, Input, Rate, Select, DatePicker } from 'antd';
 import SelectGenre from './Sections/SelectGenre';
+import SearchBook from './Sections/SearchBook';
 
 const { Title: TitleTag } = Typography;
 const { TextArea } = Input;
@@ -149,6 +150,7 @@ function UploadBookPage(props) {
                             <Input value={ISBN} onChange={isbnChangeHandler}/>
                         </Form.Item>
 
+                        <SearchBook />
                         <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}>
                             <Button type="button" onClick={GetBookInfoWithISBN}>
                                 도서정보 가져오기
