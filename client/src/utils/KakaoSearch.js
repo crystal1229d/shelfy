@@ -4,8 +4,12 @@ class KakaoSearch {
 
     constructor(key) {
         this.kakao = axios.create({   // this.client 라고 해도 된다. 편한대로 naming
-            baseURL: 'https://dapi.kakao.com/v3',
+            baseURL: 'https://dapi.kakao.com',
             params: { key: key },
+            headers: {
+                "Authorization": `KakaoAK ${key}`,
+                "Access-Control-Allow-Origin": "*"
+            }
         });
     }
 

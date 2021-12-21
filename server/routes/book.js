@@ -28,7 +28,32 @@ router.post("/", (req, res) => {
         if (err) return res.status(400).json({ success: false, err })
         return res.status(200).json( { success: true })
     });
+
 });
+
+router.post("/books", (req, res) => {
+
+    // GET
+    let limit = req.body.limit ? parseInt(req.body.limit) : 20;
+    let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+    
+    let findArgs = {};
+
+    Book
+    .find(findArgs)
+    .populate("writer")
+    .skip(skip)
+    .limit(limit)
+    .exec((err, bookInfo) => {
+        if (err) return res.status(400).json({ success: false, err })
+        return res.status(200).json({
+            succes: true,
+            bookInfo,
+            dataSize: bookInfo.length
+        })
+    })
+
+})
 
 // router.post("/login", (req, res) => {
 //     User.findOne({ email: req.body.email }, (err, user) => {

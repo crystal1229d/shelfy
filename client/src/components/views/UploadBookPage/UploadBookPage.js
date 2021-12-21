@@ -17,6 +17,7 @@ const GenreData = [
     { key: 5, value: 'biography'},
     { key: 6, value: 'autobiography'},
     { key: 7, value: 'poetry'},
+    { key: 8, value: 'informational'},
 ]
 
 function UploadBookPage(props) {
@@ -150,12 +151,12 @@ function UploadBookPage(props) {
                             <Input value={ISBN} onChange={isbnChangeHandler}/>
                         </Form.Item>
 
-                        <SearchBook />
+                        {/* <SearchBook isbn={ISBN} title={Title} author={Author} />
                         <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}>
                             <Button type="button" onClick={GetBookInfoWithISBN}>
-                                도서정보 가져오기
+                                도서정보 가져오기!
                             </Button>
-                        </Form.Item>
+                        </Form.Item> */}
                     </Form.Item>
                     
                     <Form.Item name="title" label="제목">
