@@ -20,12 +20,17 @@ function LandingPage() {
     const getBooks = (body) => {
         Axios.post('/api/book/books', body)
             .then(response => {
-                console.log(response)
+                if (response.data.success) {
+                    setBooks(response.data.bookInfo)
+                } else {
+                    alert('책 정보를 가져오는데 실패했습니다');
+                }
             })
     }
 
     const renderCards = Books.map((book, index) => {
-        return <div>book.title</div>
+        console.log(book, index)
+        return <div key={index}>{book.title}</div>
     })
 
     return (

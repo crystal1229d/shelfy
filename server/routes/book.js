@@ -47,7 +47,7 @@ router.post("/books", (req, res) => {
     .exec((err, bookInfo) => {
         if (err) return res.status(400).json({ success: false, err })
         return res.status(200).json({
-            succes: true,
+            success: true,
             bookInfo,
             dataSize: bookInfo.length
         })
