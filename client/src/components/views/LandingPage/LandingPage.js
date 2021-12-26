@@ -1,5 +1,6 @@
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import Card from './Sections/Card'
 
 function LandingPage() {
 
@@ -30,13 +31,13 @@ function LandingPage() {
 
     const renderCards = Books.map((book, index) => {
         console.log(book, index)
-        return <div key={index}>{book.title}</div>
+        return <Card key={index} book={book} />
     })
 
     return (
-        <div>
+        <section style={{ height:'100%', width:'100vw', padding:'15px 25px', display:'flex', gap:'30px' }}>
             {renderCards}
-        </div>
+        </section>
     )
 }
 
