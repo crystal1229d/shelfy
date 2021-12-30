@@ -8,6 +8,7 @@ import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer"
 import UploadBookPage from './views/UploadBookPage/UploadBookPage';
+import DetailBookPage from './views/DetailBookPage/DetailBookPage';
 
 //null   Anyone Can go inside
 //true   only logged in user can go inside
@@ -23,6 +24,7 @@ function App({ kakaoSearch }) {
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/book/upload" component={Auth(UploadBookPage, true)}/>
+          <Route exact path="/book/:bookId" component={Auth(DetailBookPage, null)}/>
         </Switch>
       </div>
       <Footer />

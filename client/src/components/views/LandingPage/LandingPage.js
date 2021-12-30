@@ -30,7 +30,6 @@ function LandingPage() {
     }
 
     const renderCards = Books.map((book, index) => {
-        console.log(book, index)
         return <Card key={index} book={book} />
     })
 
