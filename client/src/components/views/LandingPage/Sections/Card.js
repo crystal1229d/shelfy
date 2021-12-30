@@ -7,23 +7,11 @@ function Card(props) {
     }
 
     const renderGenres = () => {
+        const listItems = props.book && props.book.genre.map((item) => (
+            <div style={{ width:'fit-content', padding:'2px 7px', color:'slateblue', borderRadius:'6px', background:'lightgray' }}>{item}</div>
+        ))
 
-        console.log('props.book', props.book)
-        return props.book.genre[0];
-        // props.book && props.book.genre.map((item) => {
-        //     console.log('item', item)
-        //     return <div>{item}</div>
-        // })
-
-        // props.book && props.book.genre.map((item) => (
-        //     <div>{item}</div>
-        // ))
-
-        // props.book && props.book.map((genre) => {
-        //     console.log('item', genre)
-        //     return <div>{genre}</div>
-        // })
-        
+        return listItems
     }
 
     const renderPlot = () => {
@@ -39,8 +27,8 @@ function Card(props) {
             <div style={{ display:'grid', padding:'0 4px' }}>
                 <div style={{ fontWeight:'800', color:'blueviolet' }}>{props.book.title}</div>
                 <div>{renderAuthors()}</div>
-                <div>{renderGenres()}</div>
-                <div>{renderPlot()}</div>
+                <div style={{ display:'flex', gap:'5px' }}>{renderGenres()}</div>
+                <div style={{ hiehgt:'40px', overflow:'hidden', whiteSpace:'nowrap', textOverflow:'ellipsis' }}>{renderPlot()}</div>
             </div>
         </div>
         </a>
