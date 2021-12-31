@@ -7,8 +7,8 @@ function Card(props) {
     }
 
     const renderGenres = () => {
-        const listItems = props.book && props.book.genre.map((item) => (
-            <div style={{ width:'fit-content', padding:'2px 7px', color:'slateblue', borderRadius:'6px', background:'lightgray' }}>{item}</div>
+        const listItems = props.book && props.book.genre.map((item, index) => (
+            <div key={index} style={{ width:'fit-content', padding:'2px 7px', color:'slateblue', borderRadius:'6px', background:'lightgray' }}>{item}</div>
         ))
 
         return listItems
@@ -25,7 +25,7 @@ function Card(props) {
                 image
             </div>
             <div style={{ display:'grid', padding:'0 4px' }}>
-                <div style={{ fontWeight:'800', color:'blueviolet' }}>{props.book.title}</div>
+                <div style={{ fontSize:'1.1rem', fontWeight:'800', color:'blueviolet' }}>{props.book.title}</div>
                 <div>{renderAuthors()}</div>
                 <div style={{ display:'flex', gap:'5px' }}>{renderGenres()}</div>
                 <div style={{ hiehgt:'40px', overflow:'hidden', whiteSpace:'nowrap', textOverflow:'ellipsis' }}>{renderPlot()}</div>

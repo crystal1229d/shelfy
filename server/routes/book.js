@@ -40,18 +40,42 @@ router.post("/books", (req, res) => {
     let findArgs = {};
 
     Book
-    .find(findArgs)
-    .populate("writer")
-    .skip(skip)
-    .limit(limit)
-    .exec((err, bookInfo) => {
-        if (err) return res.status(400).json({ success: false, err })
-        return res.status(200).json({
-            success: true,
-            bookInfo,
-            dataSize: bookInfo.length
+        .find(findArgs)
+        .populate("writer")
+        .skip(skip)
+        .limit(limit)
+        .exec((err, bookInfo) => {
+            if (err) return res.status(400).json({ success: false, err })
+            return res.status(200).json({
+                success: true,
+                bookInfo,
+                dataSize: bookInfo.length
+            })
         })
-    })
+
+})
+
+router.get('/books_by_id', (req, res) => {
+
+    let type = req.query.type;
+    let bookIds = req.query.id 
+
+    if (type === 'array') {
+
+    }
+
+    Book
+        .find({ _id: { $in: bookIds }})
+        .populate('writer')
+        .exec((err, bookInfo) => {
+            if (err) return res.status(400).json({ success: false, err })
+            return res.status(200).json({
+                success: true,
+                bookInfo,
+                dataSize: bookInfo.length 
+            })
+        })
+
 
 })
 
