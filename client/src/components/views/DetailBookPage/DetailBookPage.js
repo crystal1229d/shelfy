@@ -26,9 +26,8 @@ function DetailBookPage(props) {
 
     return (
         <div style={{ width:'calc(100vw - 25%)', minWidth:'100vw', margin:'30px auto', height:'fit-content' }}>
-            DetailBookPage
-            <PostInfo post={Book} />
             <BookImage book={Book} />
+            <PostInfo post={Book} />
             <BookInfo book={Book} />
         </div>
     )

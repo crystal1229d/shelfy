@@ -1,7 +1,6 @@
 import React from 'react'
 
 function BookInfo(props) {
-    console.log(props)
     return (
         <div style={{ width:'340px', height:'200px', margin:'0 auto' }}>
             <div>제목</div>
