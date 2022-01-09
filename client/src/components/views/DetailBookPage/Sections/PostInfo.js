@@ -1,4 +1,5 @@
 import React from 'react'
+import './PostInfo.css'
 
 function PostInfo(props) {
 
@@ -10,13 +11,12 @@ function PostInfo(props) {
     }
 
     return (
-        <div style={{ width:'340px', height:'120px', margin:'0 auto', display:'grid', gridTemplateColumns:'50px 150px 1fr' }}>
-            <div style={{ width:'50px', height:'50px' }}><img style={{ width:'100%', borderRadius:'50%' }} src={props.post.writer && props.post.writer.image} alt='writer' /></div>
-            <div>{props.post.writer && props.post.writer.name}</div>
-            <div>{props.post.writer && props.post.writer.email}</div>
-            <div></div>
-            <div>{props.post.createdAt && beautifyDate(props.post.createdAt)}</div>
-            <div>{props.post.updatedAt && beautifyDate(props.post.updatedAt)}</div>
+        <div className='profile'>
+            <div className='image'><img src={props.post.writer && props.post.writer.image} alt='writer' /></div>
+            <div className='name'>{props.post.writer && props.post.writer.name}</div>
+            <div className='email'>{props.post.writer && props.post.writer.email}</div>
+            <div className='date-create'>{props.post.createdAt && beautifyDate(props.post.createdAt)}</div>
+            {/* <div className='date-update'>{props.post.updatedAt && beautifyDate(props.post.updatedAt)}</div> */}
         </div>
     )
 }
