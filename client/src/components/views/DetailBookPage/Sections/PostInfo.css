@@ -21,6 +21,15 @@
     border-radius: 50%;
 }
 
+.profile .name {
+    color: black;
+}
+
+.profile .email {
+    color :gray;
+}
+
 .profile .date-create {
     font-size: 0.75rem;
+    color: gray;
 }

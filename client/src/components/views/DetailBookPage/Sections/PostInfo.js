@@ -4,7 +4,6 @@ import './PostInfo.css'
 function PostInfo(props) {
 
     const beautifyDate = (fullDate) => {
-        console.log(fullDate) // 2021-12-16T17:32:24.213Z
         let date = `${fullDate.substr(0, 4)}년 ${fullDate.substr(5, 2)}월 ${fullDate.substr(8, 2)}일`
         let time = fullDate.substr(11, 5)
         return date
