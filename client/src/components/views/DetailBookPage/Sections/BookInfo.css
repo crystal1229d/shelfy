@@ -16,3 +16,8 @@
 .wrapper .content { 
     justify-self: left;
 }
+
+.genre {
+    display: flex;
+    gap: 10px;
+}
