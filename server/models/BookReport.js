@@ -41,7 +41,7 @@ const bookReportSchema = mongoose.Schema({
     }
 }, { timestamps: true })
 
-bookSchema.index({
+bookReportSchema.index({
     writer: 'text',
     isbn: 'text',
     title: 'text',

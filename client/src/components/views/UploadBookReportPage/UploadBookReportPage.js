@@ -22,9 +22,8 @@ function UploadBookReportPage(props) {
     const [ISBN, setISBN] = useState('')
     const [Title, setTitle] = useState('')
     const [Report, setReport] = useState('')
-    const [Plot, setPlot] = useState('')
     const [HashTag, setHashTag] = useState([])
-    const [Rating, setRating] = useState(5.0)
+    const [Rating, setRating] = useState(4.0)
     const [ReadingPeriod, setReadingPeriod] = useState([])
     const [Cover, setCover] = useState('')
 
@@ -68,7 +67,7 @@ function UploadBookReportPage(props) {
         event.preventDefault()
 
         // 유효성 체크 
-        if ( !ISBN || !Title || !Author || !Genre || !MyShelf) {
+        if ( !ISBN || !Title || !Report || !HashTag ) {
             return alert("필수 값들을 넣어주셔야 합니다")
         }
 
@@ -78,7 +77,6 @@ function UploadBookReportPage(props) {
             title: Title,
             report: Report,
             tag: HashTag,
-            plot: Plot,
             rating: Rating,
             // readingPeriod: ReadingPeriod,
             // cover: Cover 
@@ -87,10 +85,10 @@ function UploadBookReportPage(props) {
         Axios.post("/api/book", body)
             .then(response => {
                 if (response.data.success) {
-                    alert('책 정보 업로드에 성공했습니다')
+                    alert('독후감 업로드에 성공했습니다')
                     props.history.push('/')
                 } else {
-                    alert("책 정보 업로드에 실패했습니다")
+                    alert("독후감 업로드에 실패했습니다")
                 }
             })
 

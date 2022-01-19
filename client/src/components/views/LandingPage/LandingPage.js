@@ -14,7 +14,7 @@ function LandingPage() {
             limit: Limit 
         }
 
-        getBooks(body)
+        // getBooks(body)
 
     }, [])
 
