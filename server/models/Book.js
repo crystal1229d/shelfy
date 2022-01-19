@@ -17,30 +17,14 @@ const bookSchema = mongoose.Schema({
         type: Array,
         default: []
     },
-    publisher: {
-        type:String,
-        default: ''
-    },
-    publicationDate : {
-        type:String,
-        default: '' 
-    },
-    price : {
-        type:Number,
-        default: 0 
-    },
-    plot : {
-        type:String,
-        default: '' 
-    },
-    genre : {
-        type:Array,
-        default: [] 
-    },
-    myShelf : {
-        type:String,
-        default: '' 
-    },
+    // plot : {
+    //     type:String,
+    //     default: '' 
+    // },
+    // genre : {
+    //     type:Array,
+    //     default: [] 
+    // },
     cover : {
         type:String,
         default: '' 

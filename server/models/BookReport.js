@@ -2,22 +2,26 @@ const { Schema } = require('mongoose');
 const mongoose = require('mongoose');
 
 const bookReportSchema = mongoose.Schema({
-    writer: {
+    writer : {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    isbn: {
+    isbn : {
         type:String, 
         ref: 'Book',
         trim: true
     },
-    title: {
+    title : {
         type:String,
         maxlength:60
     },
     report : {
         type:String,
         default: '' 
+    },
+    rating : {
+        type: Number,
+        default: 3.5
     },
     tag : {
         type:Array,
