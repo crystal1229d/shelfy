@@ -2,6 +2,8 @@ import React from 'react'
 
 function Card(props) {
 
+    console.log(props)
+    
     const renderAuthors = () => {
         return props.book.author[0];
     }
@@ -26,8 +28,8 @@ function Card(props) {
             </div>
             <div style={{ display:'grid', padding:'0 4px' }}>
                 <div style={{ fontSize:'1.1rem', fontWeight:'800', color:'blueviolet' }}>{props.book.title}</div>
-                <div>{renderAuthors()}</div>
-                <div style={{ display:'flex', gap:'5px' }}>{renderGenres()}</div>
+                {/* <div>{renderAuthors()}</div> */}
+                {/* <div style={{ display:'flex', gap:'5px' }}>{renderGenres()}</div> */}
                 <div style={{ hiehgt:'40px', overflow:'hidden', whiteSpace:'nowrap', textOverflow:'ellipsis' }}>{renderPlot()}</div>
             </div>
         </div>

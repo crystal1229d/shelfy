@@ -4,7 +4,7 @@ import Card from './Sections/Card'
 
 function LandingPage() {
 
-    const [Books, setBooks] = useState([])
+    const [BookReports, setBookReports] = useState([])
     const [Limit, setLimit] = useState(8)
     const [Skip, setSkip] = useState(0)
 
@@ -14,23 +14,23 @@ function LandingPage() {
             limit: Limit 
         }
 
-        // getBooks(body)
+        getBookReports(body)
 
     }, [])
 
-    const getBooks = (body) => {
-        Axios.post('/api/book/books', body)
+    const getBookReports = (body) => {
+        Axios.post('/api/bookReport/bookReports', body)
             .then(response => {
                 if (response.data.success) {
-                    setBooks(response.data.bookInfo)
+                    setBookReports(response.data.bookReportInfo)
                 } else {
-                    alert('책 정보를 가져오는데 실패했습니다');
+                    alert('독후감 정보를 가져오는데 실패했습니다');
                 }
             })
     }
 
-    const renderCards = Books.map((book, index) => {
-        return <Card key={index} book={book} />
+    const renderCards = BookReports.map((bookReport, index) => {
+        return <Card key={index} book={bookReport} />
     })
 
     return (

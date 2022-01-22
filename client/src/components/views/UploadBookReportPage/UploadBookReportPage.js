@@ -6,16 +6,16 @@ import SelectGenre from './Sections/SelectGenre';
 const { Title: TitleTag } = Typography;
 const { TextArea } = Input;
 
-// const GenreData = [
-//     { key: 1, value: 'fiction'},
-//     { key: 2, value: 'non-fiction'},
-//     { key: 3, value: 'SF'},
-//     { key: 4, value: 'romance'},
-//     { key: 5, value: 'biography'},
-//     { key: 6, value: 'autobiography'},
-//     { key: 7, value: 'poetry'},
-//     { key: 8, value: 'informational'},
-// ]
+const GenreData = [
+    { key: 1, value: 'fiction'},
+    { key: 2, value: 'non-fiction'},
+    { key: 3, value: 'SF'},
+    { key: 4, value: 'romance'},
+    { key: 5, value: 'biography'},
+    { key: 6, value: 'autobiography'},
+    { key: 7, value: 'poetry'},
+    { key: 8, value: 'informational'},
+]
 
 function UploadBookReportPage(props) {
 
@@ -82,7 +82,7 @@ function UploadBookReportPage(props) {
             // cover: Cover 
         }
 
-        Axios.post("/api/book", body)
+        Axios.post("/api/bookReport", body)
             .then(response => {
                 if (response.data.success) {
                     alert('독후감 업로드에 성공했습니다')
@@ -119,7 +119,7 @@ function UploadBookReportPage(props) {
                         <Input value={Title} onChange={titleChangeHandler}/>
                     </Form.Item>
 
-                    <SelectGenre list={GenreData} value={Genre} selectHandler={HashTagChangeHandler} />
+                    <SelectGenre list={GenreData} value={HashTag} selectHandler={HashTagChangeHandler} />
 
                     <Form.Item name="report" label="독후감">
                         <TextArea value={Report} onChange={reportChangeHandler}/>
