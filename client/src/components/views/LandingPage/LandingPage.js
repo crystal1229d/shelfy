@@ -30,7 +30,7 @@ function LandingPage() {
     }
 
     const renderCards = BookReports.map((bookReport, index) => {
-        return <Card key={index} book={bookReport} />
+        return <Card key={index} bookReport={bookReport} />
     })
 
     return (

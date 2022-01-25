@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Axios from 'axios';
 import { Typography, Button, Form, Input, Rate, Select, DatePicker } from 'antd';
 import SelectGenre from './Sections/SelectGenre';
+import FileUpload from '../../../utils/FileUpload';
 
 const { Title: TitleTag } = Typography;
 const { TextArea } = Input;
@@ -21,11 +22,12 @@ function UploadBookReportPage(props) {
 
     const [ISBN, setISBN] = useState('')
     const [Title, setTitle] = useState('')
+    const [SubTitle, setSubTitle] = useState('')
     const [Report, setReport] = useState('')
     const [HashTag, setHashTag] = useState([])
     const [Rating, setRating] = useState(4.0)
     const [ReadingPeriod, setReadingPeriod] = useState([])
-    const [Cover, setCover] = useState('')
+    const [Thumbnail, setThumbnail] = useState([])
 
     const formItemLayout = {
         labelCol: { span: 6 },
@@ -40,6 +42,10 @@ function UploadBookReportPage(props) {
         setTitle(event.currentTarget.value)
     }
 
+    const subTitleChangeHandler = event => {
+        setSubTitle(event.currentTarget.value)
+    }
+
     const reportChangeHandler = event => {
         setReport(event.currentTarget.value)
     }
@@ -52,8 +58,8 @@ function UploadBookReportPage(props) {
         setRating(event.currentTarget.value)
     }
 
-    const coverChangeHandler = event => {
-        setCover(event.currentTarget.value)
+    const thumbnailChangeHandler = Thumbnail => {
+        setThumbnail(Thumbnail)
     }
 
     const GetBookInfoWithISBN = () => {
@@ -67,7 +73,7 @@ function UploadBookReportPage(props) {
         event.preventDefault()
 
         // 유효성 체크 
-        if ( !ISBN || !Title || !Report || !HashTag ) {
+        if ( !ISBN || !Title || !SubTitle || !Report || !HashTag ) {
             return alert("필수 값들을 넣어주셔야 합니다")
         }
 
@@ -75,11 +81,12 @@ function UploadBookReportPage(props) {
             writer: props.user.userData._id,
             isbn: ISBN, 
             title: Title,
+            subTitle: SubTitle, 
             report: Report,
             tag: HashTag,
             rating: Rating,
             // readingPeriod: ReadingPeriod,
-            // cover: Cover 
+            thumbnail: Thumbnail 
         }
 
         Axios.post("/api/bookReport", body)
@@ -104,6 +111,10 @@ function UploadBookReportPage(props) {
             <div>
                 <Form {...formItemLayout} onSubmit={SubmitHandler}>
 
+                    <Form.Item name="thumbnail" label="썸네일">
+                        <FileUpload refreshFunction={thumbnailChangeHandler} />
+                    </Form.Item>  
+
                     <Form.Item label="도서코드(ISBN)" style={{ margin: '0px' }}>
                         <Form.Item 
                             name="ISBN" 
@@ -117,6 +128,10 @@ function UploadBookReportPage(props) {
                     
                     <Form.Item name="title" label="제목">
                         <Input value={Title} onChange={titleChangeHandler}/>
+                    </Form.Item>
+
+                    <Form.Item name="subTitle" label="부제목">
+                        <Input value={SubTitle} onChange={subTitleChangeHandler}/>
                     </Form.Item>
 
                     <SelectGenre list={GenreData} value={HashTag} selectHandler={HashTagChangeHandler} />

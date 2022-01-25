@@ -13,8 +13,12 @@ const bookReportSchema = mongoose.Schema({
     },
     title : {
         type:String,
-        maxlength:60
+        maxlength:20
     },
+    subTitle : {
+        type:String,
+        maxlength:20
+    }, 
     report : {
         type:String,
         default: '' 
@@ -27,9 +31,9 @@ const bookReportSchema = mongoose.Schema({
         type:Array,
         default: [] 
     },
-    cover : {
+    thumbnail : {
         type:String,
-        default: '' 
+        default: [] 
     },
     likes : {
         type: Number,
@@ -45,11 +49,13 @@ bookReportSchema.index({
     writer: 'text',
     isbn: 'text',
     title: 'text',
+    subTitle: 'text',
     tag: 'text'
 }, {
     weights: {
-        isbn: 3,
-        title: 2,
+        isbn: 4,
+        title: 3,
+        subTitle: 2,
         writer: 1 
     }
 })

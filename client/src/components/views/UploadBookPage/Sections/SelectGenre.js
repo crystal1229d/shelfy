@@ -14,7 +14,7 @@ function SelectGenre(props) {
     )
 
     return ( 
-        <Form.Item name="genre" label="장르">
+        <Form.Item name="genre" label="태그">
             <Select value={props.value} onChange={props.selectHandler} mode="multiple" placeholder="Please select genre">
                 {renderGenreOptionLists()}
             </Select>
