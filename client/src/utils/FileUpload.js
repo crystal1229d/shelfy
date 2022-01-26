@@ -10,9 +10,9 @@ function FileUpload(props) {
     const dropHandler = (files) => {
         console.log('dropHandler', files)
 
-        let formData = new formData();
+        let formData = new FormData();
         const config = {
-
+            header: { 'content-type': 'multipart/form-data' }
         }
         formData.append("file", files[0])
 
@@ -24,11 +24,10 @@ function FileUpload(props) {
                     alert('이미지 파일 저장에 실패했습니다')
                 }
             })
-
     }
 
     const deleteHandler = image => {
-
+        console.log('deleteHandler', image)
     }
 
     console.log(props)

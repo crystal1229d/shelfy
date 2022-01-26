@@ -32,7 +32,7 @@ const bookReportSchema = mongoose.Schema({
         default: [] 
     },
     thumbnail : {
-        type:String,
+        type:Array,
         default: [] 
     },
     likes : {

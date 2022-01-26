@@ -1,10 +1,35 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer')
 const { BookReport } = require("../models/BookReport");
 
 //=================================
 //          BookReport
 //=================================
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '/uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${Date.now()}_${file.originalname}`)
+    }
+})
+const upload = multer({ storage: storage }).single("file")
+
+router.post('/image', (req, res) => {
+
+    // UPLOAD IMAGE
+    upload (req, res, err => {
+        if (err) {
+            return res.json({ success: false, err })
+        } else {
+            console.log(res)
+            return res.json({ success: true })
+        }
+    })
+
+})
 
 router.post("/", (req, res) => {
 
