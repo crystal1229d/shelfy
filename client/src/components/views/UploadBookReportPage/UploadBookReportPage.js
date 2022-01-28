@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Axios from 'axios';
 import { Typography, Button, Form, Input, Rate, Select, DatePicker } from 'antd';
 import SelectGenre from './Sections/SelectGenre';
-import FileUpload from '../../../utils/FileUpload';
+import FileUpload from '../../utils/FileUpload';
 
 const { Title: TitleTag } = Typography;
 const { TextArea } = Input;

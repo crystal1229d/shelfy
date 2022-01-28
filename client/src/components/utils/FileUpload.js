@@ -30,8 +30,6 @@ function FileUpload(props) {
         console.log('deleteHandler', image)
     }
 
-    console.log(props)
-
     return (
         <div style={{ width:'300px', height:'240px', display:'flex', alignItems:'center', justifyContent:'center', border:'2px dashed lightgray', background:'#eeeeee' }}>
             <Dropzone onDrop={dropHandler}>
