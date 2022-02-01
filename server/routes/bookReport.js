@@ -9,7 +9,7 @@ const { BookReport } = require("../models/BookReport");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '/uploads')
+        cb(null, 'uploads/')
     },
     filename: function (req, file, cb) {
         cb(null, `${Date.now()}_${file.originalname}`)
@@ -18,14 +18,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).single("file")
 
 router.post('/image', (req, res) => {
-
     // UPLOAD IMAGE
     upload (req, res, err => {
         if (err) {
             return res.json({ success: false, err })
         } else {
-            console.log(res)
-            return res.json({ success: true })
+            return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })
         }
     })
 
