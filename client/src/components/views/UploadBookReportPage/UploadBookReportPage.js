@@ -55,7 +55,8 @@ function UploadBookReportPage(props) {
     }
 
     const ratingChangeHandler = event => {
-        setRating(event.currentTarget.value)
+        console.log(event.toFixed(1))
+        setRating(event)
     }
 
     const thumbnailChangeHandler = Thumbnail => {
@@ -141,11 +142,11 @@ function UploadBookReportPage(props) {
                     </Form.Item>
 
                     <Form.Item name="rating" label="별점">
-                        <Rate value={Rating} onChange={ratingChangeHandler}/>
+                        <Rate character='O' allowHalf allowClear={false} value={Rating} onChange={ratingChangeHandler}/>
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ span: 12, offset: 12, }}>
-                        <Button type="primary" htmlType="submit" style={{ padding: '5px 30px' }}>
+                        <Button type="primary" htmlType="submit" style={{ padding: '5px 30px', }}>
                             업로드
                         </Button>
                     </Form.Item>

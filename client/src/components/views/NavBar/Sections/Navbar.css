@@ -11,6 +11,7 @@
 .menu__logo {
   width: 150px;
   float: left;
+  font-size: 2rem;
 }
 
 .menu__logo a {
